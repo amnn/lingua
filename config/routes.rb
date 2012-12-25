@@ -1,4 +1,15 @@
 Lingua::Application.routes.draw do
+
+  get "list/index"
+
+  get "list/new"
+
+  get "list/show"
+
+  get "list/edit"
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +59,7 @@ Lingua::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'list#index'
 
   # See how all your routes lay out with "rake routes"
 
