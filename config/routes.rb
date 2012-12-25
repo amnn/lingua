@@ -1,5 +1,7 @@
 Lingua::Application.routes.draw do
 
+  devise_for :users
+
   get "list/index"
 
   get "list/new"
