@@ -58,6 +58,16 @@ module Lingua
 
     config.assets.initialize_on_precompile = false
 
+    config.to_prepare do
+      Devise::SessionsController.layout      'auth'
+      Devise::RegistrationsController.layout 'auth'
+      Devise::ConfirmationsController.layout 'auth'
+      Devise::UnlocksController.layout       'auth'            
+      Devise::PasswordsController.layout     'auth'        
+    end
+
+    config.paths['app/views'] << "app/views/devise"
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end

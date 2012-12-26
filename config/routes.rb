@@ -1,6 +1,20 @@
 Lingua::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :path        => 'auth',
+
+                     :controllers => {
+
+                      :registrations => 'registrations'
+
+                    },
+
+                     :path_names  => { 
+
+                      :sign_in  =>    'login', 
+                      :sign_out =>   'logout',
+                      :sign_up  => 'register'
+
+                    }
 
   get "list/index"
 

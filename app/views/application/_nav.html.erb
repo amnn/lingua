@@ -1,0 +1,24 @@
+<div class='navbar navbar-fixed-top' style='position:absolute;'>
+    <div class='navbar-inner'>
+        <div class='container' style='width:auto; padding: 0 20 px; margin-left:10px;'>
+
+            <%= link_to "LinguA", root_path, :class => "brand logo" %>
+
+            <ul class='nav'>
+
+                <li class='divider-vertical'></li>
+                <li><a href='#'><i class='icon-list'></i> Lists</a></li>
+                <li class='divider-vertical'></li>
+
+            </ul>
+
+            <ul class='nav pull-right'>
+
+                <li class='divider-vertical'></li>
+                <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+
+            </ul>
+
+        </div>
+    </div>
+</div>

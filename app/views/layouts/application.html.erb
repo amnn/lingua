@@ -5,26 +5,11 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <style type='text/css'><%= yield(:style) %></style>
 </head>
 <body>
 
-<div class='navbar navbar-fixed-top' style='position:absolute;'>
-    <div class='navbar-inner'>
-        <div class='container' style='width:auto; padding: 0 20 px; margin-left:10px;'>
-
-            <%= link_to "LinguA", root_path, :class => "brand logo" %>
-
-            <ul class='nav'>
-
-                <li class='divider-vertical'></li>
-                <li><a href='#'><i class='icon-list'></i> Lists</a></li>
-                <li class='divider-vertical'></li>
-
-            </ul>
-
-        </div>
-    </div>
-</div>
+<%= render 'nav' %>
 
 <div class='row-fluid' style='margin-top:10px;'>
 <div class='span8 offset2'>
@@ -46,7 +31,7 @@
 </div>
 </div>
 
-<%= yield %>
+<%= content_for?(:content) ? yield(:content) : yield %>
 
 </body>
 </html>

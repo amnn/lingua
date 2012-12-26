@@ -1,0 +1,17 @@
+<% content_for :style   do %>
+
+body { background-color: #eee; }
+
+<% end %>
+
+<% content_for :content do %>
+
+<div class='login-box'>
+
+    <%= yield %>
+
+</div>
+
+<% end %>
+
+<%= render :template => 'layouts/application' %>
