@@ -41,6 +41,10 @@ body  { padding-top:                               40px; }
     text-align:  left; 
 }
 
+.login-buttons > * {
+    margin: 0;
+}
+
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block, {
