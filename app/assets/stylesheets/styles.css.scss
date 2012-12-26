@@ -31,3 +31,18 @@ body  { padding-top:                               40px; }
     font-weight:                      100;
 
 }
+
+.login-box                { text-align:       center; }
+
+.login-box .input-prepend { display:    inline-block; }
+
+.login-box .remember-me   { 
+    margin:      10px;
+    text-align:  left; 
+}
+
+input[type="submit"].btn-block,
+input[type="reset"].btn-block,
+input[type="button"].btn-block, {
+  width: 100%;
+}
