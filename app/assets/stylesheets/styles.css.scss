@@ -6,6 +6,21 @@ body  { padding-top:                               40px; }
 
 .logo { font-family:'Cinzel Decorative', Georgia, serif; }
 
+#error_explanation h2 {
+
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight:                                           bold;
+    font-size:                                             14pt;
+    line-height:                                           14pt;
+}
+
+.field_with_errors {
+    @extend .control-group;
+    @extend         .error;
+    
+    display:inline-block;
+}
+
 .login-box {
 
     background-color:    #fff;
@@ -39,10 +54,6 @@ body  { padding-top:                               40px; }
 .login-box .remember-me   { 
     margin:      10px;
     text-align:  left; 
-}
-
-.login-buttons > * {
-    margin: 0;
 }
 
 input[type="submit"].btn-block,

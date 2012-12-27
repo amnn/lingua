@@ -14,17 +14,26 @@
 <div class='row-fluid' style='margin-top:10px;'>
 <div class='span8 offset2'>
 
-    <% if notice %> <div class="alert alert-block alert-success">
+    <% if notice %> <div class="alert alert-success">
 
         <button class="close" data-dismiss="alert" type="button">&times;</button>
         <%= notice %>
 
     </div> <% end %>
 
-    <% if alert %><div class="alert alert-block alert-error">
+    <% if alert %><div class="alert alert-error">
 
         <button class="close" data-dismiss="alert" type="button">&times;</button>
         <%= alert %>
+
+    </div> <% end %>
+
+    <% error = devise_controller? ? devise_error_messages! : nil %>
+
+    <% if error && error != "" %><div class="alert alert-error">
+
+        <button class="close" data-dismiss="alert" type="button">&times;</button>
+        <%= error %>
 
     </div> <% end %>
 
