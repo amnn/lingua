@@ -37,10 +37,10 @@
 
     </div> <% end %>
 
-</div>
-</div>
+    <%= content_for?(:content) ? yield(:content) : yield %>
 
-<%= content_for?(:content) ? yield(:content) : yield %>
+</div>
+</div>
 
 </body>
 </html>

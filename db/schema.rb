@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121225232400) do
+ActiveRecord::Schema.define(:version => 20121231000806) do
 
   create_table "languages", :force => true do |t|
     t.string   "name"
@@ -22,19 +22,26 @@ ActiveRecord::Schema.define(:version => 20121225232400) do
   create_table "list_items", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "list_id"
+    t.integer  "word1_id"
+    t.integer  "word2_id"
+  end
+
+  create_table "list_ratings", :force => true do |t|
+    t.integer  "rating"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "list_id"
   end
 
   create_table "lists", :force => true do |t|
     t.string   "name"
-    t.string   "lang1"
-    t.string   "lang2"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "meanings", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "lang1_id"
+    t.integer  "lang2_id"
   end
 
   create_table "users", :force => true do |t|
@@ -54,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20121225232400) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "stars",                  :default => 0
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
@@ -62,9 +70,9 @@ ActiveRecord::Schema.define(:version => 20121225232400) do
 
   create_table "words", :force => true do |t|
     t.string   "word"
-    t.integer  "freq"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "language_id"
   end
 
 end
