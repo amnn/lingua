@@ -1,0 +1,22 @@
+<% if notice %> <div class="alert alert-success">
+
+    <button class="close" data-dismiss="alert" type="button">&times;</button>
+    <%= notice %>
+
+</div> <% end %>
+
+<% if alert %><div class="alert alert-error">
+
+    <button class="close" data-dismiss="alert" type="button">&times;</button>
+    <%= alert %>
+
+</div> <% end %>
+
+<% error = devise_controller? ? devise_error_messages! : nil %>
+
+<% if !error.blank? %><div class="alert alert-error">
+
+    <button class="close" data-dismiss="alert" type="button">&times;</button>
+    <%= error %>
+
+</div> <% end %>

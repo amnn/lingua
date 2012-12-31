@@ -1,0 +1,83 @@
+<% langs = Language.all %>
+
+<%= form_tag lists_path, :method => 'get', :class => 'form-search' do %>
+<div class='btn-toolbar'>
+
+<div class='input-append'>
+
+    <%= text_field_tag :search, params[:search], 
+                       :placeholder =>'Search', 
+                       :class => 'input-medium search-query' %>
+
+    <%= button_tag :class => 'btn', :type => 'submit', :name => nil do %>
+
+      <i class='icon-search'></i>
+
+    <% end %>
+
+</div>
+
+<div class='pull-right'>
+
+  <div class='btn-group'>
+
+     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    Filter
+    <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" style='padding:10px;'>
+
+      <li><%= label_tag :my_lists, :class => 'checkbox' do %>
+
+        <%= check_box_tag :my_lists %> My Lists
+
+      <% end %></li>
+
+      <li><%= label_tag :public_lists, :class => 'checkbox' do %>
+
+        <%= check_box_tag :public_lists %> Public Lists
+
+      <% end %></li>
+
+      <li class='divider'></li>
+      <li><small class='muted'>Languages</small></li>
+
+      <% langs.each do |lang| %>
+        <% id = :"lang[#{lang.id}]" %>
+        <li><%= label_tag id, :class => 'checkbox' do %>
+
+          <%= check_box_tag id %> <%= lang.name %>
+
+        <% end %></li>
+
+      <% end %>
+
+      <li class='divider'></li>
+
+      <li><%= button_tag                                 "Select all", 
+                         :class => 'btn btn-link btn-small btn-block', 
+                         :name  =>                        :select_all %></li>
+
+      <li><%= button_tag                                "Select none", 
+                         :class => 'btn btn-link btn-small btn-block', 
+                         :name  =>                       :select_none %></li>
+
+      <li class='divider'></li>
+
+      <li><%= button_tag                                "Reset Filters", 
+                         :class => 'btn btn-danger btn-small btn-block', 
+                         :name  =>                               :reset %></li>
+    </ul>
+
+  </div>
+
+  <%= link_to new_list_path, :class => 'btn btn-primary' do %>
+
+    <i class='icon-plus icon-white'></i> New List
+
+  <% end %>
+
+</div>
+
+</div>
+<% end %>
