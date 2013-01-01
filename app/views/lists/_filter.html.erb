@@ -27,9 +27,11 @@
     </a>
     <ul class="dropdown-menu" style='padding:10px;'>
 
+      <li><small class='muted'>Lists</small></li>
+
       <li><%= label_tag :my_lists, :class => 'checkbox' do %>
 
-        <%= check_box_tag :my_lists %> My Lists
+        <%= check_box_tag :my_lists, '1', true %> My Lists
 
       <% end %></li>
 
@@ -38,7 +40,6 @@
         <%= check_box_tag :public_lists %> Public Lists
 
       <% end %></li>
-
       <li class='divider'></li>
       <li><small class='muted'>Languages</small></li>
 
@@ -46,7 +47,7 @@
         <% id = :"lang[#{lang.id}]" %>
         <li><%= label_tag id, :class => 'checkbox' do %>
 
-          <%= check_box_tag id %> <%= lang.name %>
+          <%= check_box_tag id, '1', true %> <%= lang.name %>
 
         <% end %></li>
 
@@ -54,24 +55,38 @@
 
       <li class='divider'></li>
 
-      <li><%= button_tag                                 "Select all", 
-                         :class => 'btn btn-link btn-small btn-block', 
-                         :name  =>                        :select_all %></li>
+      <li>
+        <%= button_tag                         "Select all", 
+                         :class => 'btn btn-link btn-small',
+                         :type  =>                  :button,
+                         :id    =>       :filter_select_all,
+                         :name  =>              :select_all %>
 
-      <li><%= button_tag                                "Select none", 
-                         :class => 'btn btn-link btn-small btn-block', 
-                         :name  =>                       :select_none %></li>
+        <%= button_tag                        "Select none", 
+                         :class => 'btn btn-link btn-small',
+                         :type  =>                  :button,
+                         :id    =>      :filter_select_none,
+                         :name  =>             :select_none %>
+      </li>
 
       <li class='divider'></li>
 
-      <li><%= button_tag                                "Reset Filters", 
-                         :class => 'btn btn-danger btn-small btn-block', 
-                         :name  =>                               :reset %></li>
+      <li><%= button_tag                                 "Reset Filters", 
+                         :class =>  'btn btn-danger btn-small btn-block', 
+                         :type  =>                               :button,
+                         :id    =>                         :filter_reset,
+                         :name  =>                                :reset %></li>
+
+      <li><%= button_tag                                 "Apply Filters", 
+                         :class => 'btn btn-success btn-small btn-block',
+                         :id    =>                         :filter_apply,
+                         :name  =>                                   nil,
+                         :style =>                    'margin-top: 5px;' %></li>
     </ul>
 
   </div>
 
-  <%= link_to new_list_path, :class => 'btn btn-primary' do %>
+  <%= link_to new_list_path, :class => 'btn btn-success' do %>
 
     <i class='icon-plus icon-white'></i> New List
 

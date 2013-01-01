@@ -2,8 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-
-$ -> 
-    console.log "Hello"
-    $( '.dropdown-menu input, .dropdown-menu button' ).click (e) -> 
-        e.stopPropagation()
+# Keep Dropdown visible when modifying input and button elements held within it.
+$ -> $( '.dropdown-menu input, .dropdown-menu button' ).click (e) -> e.stopPropagation()

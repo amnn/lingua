@@ -1,17 +1,32 @@
 <%= render 'filter' %>
 
-<table>
+<table class='table table-striped table-hover'>
+
+<thead>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th style="width:30%;">Name</th>
+    <th style="width:15%;">Created By</th>
+    <th style="width:20%;">Languages</th>
+    <th style="width:10%;">Rating</th>
+    <th style="width:15%;">Last Updated</th>
+    <th class='pull-right'>Actions</th>
   </tr>
+</thead>
+
+<tbody>
 
 <% @lists.each do |list| %>
   <tr>
-    <td><%= link_to 'Show', list %></td>
-    <td><%= link_to 'Edit', edit_list_path(list) %></td>
-    <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to list.name, list_path(list) %></td>
+    <td><%= list.user.first_name %></td>
+    <td><%= list.lang1.name + " - " + list.lang2.name %></td>
+    <td><%= 'rating' %></td>
+    <td><%= list.updated_at.strftime( '%d/%m/%Y') %></td>
+
+    <td><%= render 'tools', :list => list %></td>
   </tr>
 <% end %>
+
+</tbody>
+
 </table>

@@ -2,24 +2,36 @@
 @import url(http://fonts.googleapis.com/css?family=Cinzel+Decorative);
 @import "bootstrap";
 
-body  { padding-top:                               40px; }
+body   { padding-top:                               40px; }
 
-.logo { font-family:'Cinzel Decorative', Georgia, serif; }
+h2, h1 { font-family:           Garamond, Georgia, serif; }
 
-#error_explanation h2 {
+input[ type = "submit" ].btn-block,
+input[ type =  "reset" ].btn-block,
+input[ type = "button" ].btn-block, {
+
+  width: 100%;
+
+}
+
+.logo  { font-family:'Cinzel Decorative', Georgia, serif; }
+
+.alert-error h2 {
 
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight:                                           bold;
     font-size:                                             14pt;
     line-height:                                           14pt;
+
 }
 
 .field_with_errors {
-    
+
     @extend .control-group;
     @extend         .error;
 
     display:  inline-block;
+
 }
 
 .login-box {
@@ -53,12 +65,49 @@ body  { padding-top:                               40px; }
 .login-box .input-prepend { display:    inline-block; }
 
 .login-box .remember-me   { 
+
     margin:      10px;
     text-align:  left; 
+
 }
 
-input[type="submit"].btn-block,
-input[type="reset"].btn-block,
-input[type="button"].btn-block, {
-  width: 100%;
+.list-box {
+
+    @extend    .span8;
+
+    margin: 10px auto;
+
+}
+
+.list_form {
+
+    text-align: center;
+
+}
+
+.list_form table                  { width:    100%; }
+.list_form select                 { width:    100%; }
+
+.list_form input[ type = 'text' ] { width:    100%; }
+
+.list_form .field_with_errors     { display: block; }
+
+.list_form table td {
+
+    @extend .span4;
+
+}
+
+.list_form table td:nth-child(1) {
+
+    padding-right:  10px;
+    text-align:    right;
+
+}
+
+.list_form table td:nth-child(2) {
+
+    padding-left:   10px;
+    text-align:     left;
+
 }

@@ -1,0 +1,17 @@
+<div class='pull-right'>
+<% if list.user == current_user %>
+
+  <%= link_to edit_list_path( list ) do %>
+    <i class='icon-pencil'></i>
+  <% end %>
+
+  <%= link_to(                           list_path( list ), 
+              :method =>                           :delete,
+              :data   => { :confirm => "Are you sure?" } ) do %>
+    <i class='icon-trash'></i>
+  <% end %>
+
+<% else %>
+  COPY
+<% end %>
+</div>

@@ -1,6 +1,7 @@
-<%= form_for(@list) do |f| %>
-  <% if @list.errors.any? %>
-    <div id="error_explanation">
+<% if @list.errors.any? %>
+    <div id="error_explanation" class='alert alert-error'>
+
+      <button class="close" data-dismiss="alert" type="button">&times;</button>
       <h2><%= pluralize(@list.errors.count, "error") %> prohibited this list from being saved:</h2>
 
       <ul>
@@ -9,9 +10,40 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+<% end %>
+
+
+<% opts = Language.all.collect{ |lang| [ lang.name, lang.id ] } %>
+<%= form_for( @list, :html => { :class => 'list_form' } ) do |f| %>
+    
+    <table>
+
+      <tr>
+        <td>
+          <%= f.text_field                       :name, 
+                           :placeholder => 'List Name' %>
+        </td>
+        <td>
+          <%= f.label :public, :class => 'checkbox' do %>
+
+              <%= f.check_box :public %> Public?
+
+          <% end %>
+        </td>
+      </tr>
+
+      <tr>
+        <td><%= select( :list, :lang1_id, opts ) %></td>
+        <td><%= select( :list, :lang2_id, opts ) %></td>
+      </tr>
+
+    </table>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button                                "Add Definition", 
+                 :class =>           "btn btn-primary btn-block", 
+                 :type  =>                              'button' %><br/>
+    <%= f.submit :class => "btn btn-success btn-large btn-block" %>
   </div>
+
 <% end %>
