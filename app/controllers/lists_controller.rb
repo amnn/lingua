@@ -2,6 +2,12 @@ class ListsController < ApplicationController
 
   before_filter :authenticate_user!
 
+  def item_blank? a
+
+      a["word1_str"].blank? || a["word2_str"].blank?
+
+  end
+
   # GET /lists
   # GET /lists.json
   def index
@@ -40,6 +46,8 @@ class ListsController < ApplicationController
   # GET /lists/1/edit
   def edit
     @list = List.find(params[:id])
+
+    # if !@list.public &&
   end
 
   # POST /lists
@@ -53,9 +61,9 @@ class ListsController < ApplicationController
 
     records    = nested.collect do |_, fields| 
 
-      ListItem.new(     { "list" => @list }.merge( fields ) )
+      ListItem.new(     { "list" => @list }.merge( fields ) ) if !item_blank?( fields )
 
-    end
+    end.compact
 
     respond_to do |format|
       if @list.save && records.map( &:save ).all?
@@ -81,9 +89,25 @@ class ListsController < ApplicationController
 
     new_items = []
 
+    nested.each do |i, r|
+
+      if !r.key?( "id" )
+
+        new_items << ListItem.new( { "list" => @list }.merge( r ) ) if !item_blank?( r )
+
+        nested.delete( i )
+
+      else
+
+        r[ "_destroy" ] = "true" if item_blank?( r )
+
+      end
+
+    end
+
     nested.delete_if do |i, r|
 
-      new_items << ListItem.new( { "list" => @list }.merge( r ) ) if !r.key?( "id" ) 
+      new_items << ListItem.new( { "list" => @list }.merge( r ) ) if !r.key?( "id" ) && 
 
       !r.key?( "id" )
     end

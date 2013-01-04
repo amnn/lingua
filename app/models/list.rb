@@ -19,9 +19,6 @@ class List < ActiveRecord::Base
   has_many                   :list_ratings
 
   accepts_nested_attributes_for                 :list_items, 
-                                allow_destroy:         true, 
-                                reject_if:     lambda { |a| 
-                                    a[:word1_str].blank? || 
-                                    a[:word2_str].blank?  }
+                                allow_destroy:         true
 
 end
