@@ -1,5 +1,5 @@
 class Word < ActiveRecord::Base
-  attr_accessible :freq, :word
+  attr_accessible :freq, :word, :language, :language_id
 
   belongs_to :language
 

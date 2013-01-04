@@ -85,10 +85,25 @@ input[ type = "button" ].btn-block, {
 
 }
 
-.list_form table                  { width:    100%; }
-.list_form select                 { width:    100%; }
+.list_form                 select,
+.list_form input[ type = 'text' ] {
 
-.list_form input[ type = 'text' ] { width:    100%; }
+    width:     100%;
+    max-width: 100%;
+
+}
+
+.list_form table                  { width:    100%; }
+
+.list_form input[ type = 'text' ] { 
+    @extend .input-block-level;
+
+    box-sizing:        border-box;
+   -moz-box-sizing:    border-box;
+   -webkit-box-sizing: border-box;
+
+    height:                  28px;
+}
 
 .list_form .field_with_errors     { display: block; }
 

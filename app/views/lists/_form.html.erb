@@ -14,17 +14,17 @@
 
 
 <% opts = Language.all.collect{ |lang| [ lang.name, lang.id ] } %>
-<%= form_for( @list, :html => { :class => 'list_form' } ) do |f| %>
+<%= form_for( @list, html: { class: 'list_form' } ) do |f| %>
     
     <table>
 
       <tr>
         <td>
-          <%= f.text_field                       :name, 
-                           :placeholder => 'List Name' %>
+          <%= f.text_field                    :name, 
+                           placeholder: 'List Name' %>
         </td>
         <td>
-          <%= f.label :public, :class => 'checkbox' do %>
+          <%= f.label :public, class: 'checkbox' do %>
 
               <%= f.check_box :public %> Public?
 
@@ -37,13 +37,19 @@
         <td><%= select( :list, :lang2_id, opts ) %></td>
       </tr>
 
+      <%= f.fields_for :list_items do |lf| %>
+
+        <%= render 'item', f: lf %>
+
+      <% end %>
+
     </table>
 
   <div class="actions">
-    <%= f.button                                "Add Definition", 
-                 :class =>           "btn btn-primary btn-block", 
-                 :type  =>                              'button' %><br/>
-    <%= f.submit :class => "btn btn-success btn-large btn-block" %>
+    <%= f.button                             "Add Definition", 
+                 class:           "btn btn-primary btn-block", 
+                 type:                               'button' %><br/>
+    <%= f.submit class: "btn btn-success btn-large btn-block" %>
   </div>
 
 <% end %>
