@@ -25,8 +25,17 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @list }
+
+      if !@list.public && @list.user != current_user
+
+        format.html { redirect_to lists_path, alert:  "You cannot view that list" }
+        format.json { head :no_content,       status:               :unauthorized }
+
+      else
+        format.html # show.html.erb
+        format.json { render json: @list }
+      end
+
     end
   end
 
@@ -47,7 +56,11 @@ class ListsController < ApplicationController
   def edit
     @list = List.find(params[:id])
 
-    # if !@list.public &&
+    if @list.user != current_user
+
+      redirect_to lists_path, alert: "You cannot edit that list."
+
+    end
   end
 
   # POST /lists
