@@ -32,21 +32,23 @@
         </td>
       </tr>
 
-      <tr>
+      <tr data-index='-1'>
         <td><%= select( :list, :lang1_id, opts ) %></td>
         <td><%= select( :list, :lang2_id, opts ) %></td>
       </tr>
 
+      <% i = 0 %>
       <%= f.fields_for :list_items do |lf| %>
 
-        <%= render 'item', f: lf %>
-
+        <%= render 'item', f: lf, index: i %>
+        <% i += 1 %>
       <% end %>
 
     </table>
 
   <div class="actions">
     <%= f.button                             "Add Definition", 
+                 id:                         "add_definition",
                  class:           "btn btn-primary btn-block", 
                  type:                               'button' %><br/>
     <%= f.submit class: "btn btn-success btn-large btn-block" %>

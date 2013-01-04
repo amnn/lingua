@@ -1,12 +1,12 @@
 class ListItem < ActiveRecord::Base
   # attr_accessible :title, :body
 
-  attr_accessor    :lang1_id,  :lang2_id
+  attr_accessor                :_destroy
   attr_reader     :word1_str, :word2_str
   attr_accessible :word1_str, :word2_str
   attr_accessible  :word1_id,  :word2_id
   attr_accessible     :word1,     :word2
-  attr_accessible  :lang1_id,  :lang2_id
+  attr_accessible              :_destroy
   attr_accessible                  :list
 
   after_save                 :trim_words
