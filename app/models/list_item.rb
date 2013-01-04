@@ -18,7 +18,7 @@ class ListItem < ActiveRecord::Base
   belongs_to :word2, class_name:  'Word'
 
   def word1_str= word
-    puts "word1_str= " + word
+    #puts "word1_str= " + word
 
     ListItem.uncached { release_word Word.find( self.word1_id ) } if !self.word1_id.blank?
     self.word1_id =     process_word word, self.list.lang1_id
@@ -27,7 +27,7 @@ class ListItem < ActiveRecord::Base
   end
 
   def word2_str= word
-    puts "word2_str= " + word
+    #puts "word2_str= " + word
 
     ListItem.uncached { release_word Word.find( self.word2_id ) } if !self.word2_id.blank?
     self.word2_id =     process_word word, self.list.lang2_id
@@ -36,33 +36,33 @@ class ListItem < ActiveRecord::Base
   end
 
   def trim_words
-    puts "trim_words"
+    #puts "trim_words"
     ListItem.uncached { Word.where( freq: 0 ).destroy_all }
   end
 
   def populate_word_str
-    puts "populate_word_str"
+    #puts "populate_word_str"
     @word1_str = self.word1.word.capitalize
     @word2_str = self.word2.word.capitalize
 
   end
 
   def release_word word
-    print "release_word "
+    #print "release_word "
     if !word.nil?
 
-      print "#{word.id} #{word.word} #{word.freq}\n"
+      #print "#{word.id} #{word.word} #{word.freq}\n"
 
       word.freq -= 1
       word.save
-    else
-      print "\n"
+    #else
+      #print "\n"
     end
 
   end
 
   def release_words
-    puts "release_words"
+    #puts "release_words"
     release_word self.word1
     release_word self.word2
 
@@ -77,7 +77,7 @@ class ListItem < ActiveRecord::Base
   end
 
   def process_word word, lang_id
-    print "process_word #{word}, #{lang_id}"
+    #print "process_word #{word}, #{lang_id}"
     ListItem.uncached do
 
       word_model = Word.where( :word => word.downcase, :language_id => lang_id ).first
@@ -93,7 +93,7 @@ class ListItem < ActiveRecord::Base
 
       end
 
-      puts " \##{word_model.freq} => #{word_model.id}"
+      #puts " \##{word_model.freq} => #{word_model.id}"
 
       return word_model.id
     end
