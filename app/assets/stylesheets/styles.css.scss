@@ -113,14 +113,18 @@ input[ type = "button" ].btn-block, {
 
 }
 
-.list_form table td:nth-child(1) {
+.list_form  table td:nth-child(1),
+.definition-table td:nth-child(1),
+.definition-table th:nth-child(1) {
 
     padding-right:  10px;
     text-align:    right;
 
 }
 
-.list_form table td:nth-child(2) {
+.list_form  table td:nth-child(2),
+.definition-table td:nth-child(2),
+.definition-table th:nth-child(2) {
 
     padding-left:   10px;
     text-align:     left;
