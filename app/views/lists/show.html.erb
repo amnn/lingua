@@ -26,10 +26,19 @@
 
     </table>
     <% # Should Display Edit and Destroy *or* Copy %>
-    <%= link_to        'Edit', edit_list_path( @list ), class: 'btn btn-block btn-large btn-primary' %>
-    <%= link_to 'Delete List',      list_path( @list ), class:            'btn btn-block btn-danger',
-                                                        method:                              :delete,
-                                                        data:           { confirm: "Are you sure?" } %>
-    <%= link_to      '« Back',              lists_path, class:    'btn btn-block btn-small btn-info' %>
+    <%= link_to(              'Edit', edit_list_path( @list ), 
+                 class: 'btn btn-block btn-large btn-primary' ) if @list.user == current_user %>
+
+    <%= link_to(              "Copy", copy_list_path( @list ),
+                 method:                                :post,
+                 class: 'btn btn-block btn-large btn-success' ) %>
+
+    <%= link_to(             'Delete List', list_path( @list ), 
+                 class:            'btn btn-block btn-danger',
+                 method:                              :delete,
+                 data:           { confirm: "Are you sure?" } ) if @list.user == current_user %>
+
+    <%= link_to(                         '« Back', lists_path, 
+                 class:    'btn btn-block btn-small btn-info' ) %>
 
 </div>
