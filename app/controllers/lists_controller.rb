@@ -45,8 +45,8 @@ class ListsController < ApplicationController
 
       if !@list.public && @list.user != current_user
 
-        format.html { redirect_to lists_path, alert:  "You cannot view that list" }
-        format.json { head :no_content,       status:               :unauthorized }
+        format.html { redirect_to lists_url, alert:  "You cannot view that list" }
+        format.json { head :no_content,      status:               :unauthorized }
 
       else
         format.html # show.html.erb
@@ -75,7 +75,7 @@ class ListsController < ApplicationController
 
     if @list.user != current_user
 
-      redirect_to lists_path, alert: "You cannot edit that list."
+      redirect_to lists_url, alert: "You cannot edit that list."
 
     end
   end
@@ -158,11 +158,23 @@ class ListsController < ApplicationController
   # DELETE /lists/1.json
   def destroy
     @list = List.find(params[:id])
-    @list.destroy
 
     respond_to do |format|
-      format.html { redirect_to lists_url }
-      format.json { head :no_content }
+
+      if @list.user == current_user
+
+        @list.destroy
+
+        format.html { redirect_to   lists_url }
+        format.json { head        :no_content }
+
+      else
+
+        format.html { redirect_to lists_url, alert: "You cannot delete that list" }
+        format.json { head :no_content,      status:                :unauthorized }
+
+      end
+
     end
   end
 end
