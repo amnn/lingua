@@ -38,7 +38,7 @@
                  method:                              :delete,
                  data:           { confirm: "Are you sure?" } ) if @list.user == current_user %>
 
-    <%= link_to(                         '« Back', lists_path, 
+    <%= link_to(       '« Back', 'javascript:history.back();', 
                  class:    'btn btn-block btn-small btn-info' ) %>
 
 </div>

@@ -3,6 +3,9 @@
 
     <%= render 'form' %>
 
-    <%= link_to   'Show',      @list, class: 'btn btn-warning btn-block btn-small' %>
-    <%= link_to '« Back', lists_path, class:    'btn btn-info btn-block btn-small' %>
+    <%= link_to   'Show',                        @list, 
+        class:   'btn btn-warning btn-block btn-small' %>
+        
+    <%= link_to '« Back', 'javascript:history.back();', 
+        class:      'btn btn-info btn-block btn-small' %>
 </div>
