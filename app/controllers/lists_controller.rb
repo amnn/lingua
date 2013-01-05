@@ -69,6 +69,37 @@ class ListsController < ApplicationController
     end
   end
 
+  # POST /lists/1/copy
+  def copy
+
+    copy_list = List.find(         params[ :id ] )
+
+    @list     = List.new( name:    copy_list.name,
+                          lang1:  copy_list.lang1,
+                          lang2:  copy_list.lang2,
+                          public:           false,
+                          user:      current_user )
+
+    items = copy_list.list_items.map do |fields|
+
+      ListItem.new( list:                 @list, 
+                    word1_str: fields.word1_str, 
+                    word2_str: fields.word2_str )
+
+    end
+
+    if @list.save && items.map( &:save ).all?
+
+      redirect_to action: 'show', id: @list.id
+
+    else
+
+      redirect_to lists_url, alert: 'There was an error copying the list.'
+
+    end
+
+  end
+
   # GET /lists/1/edit
   def edit
     @list = List.find(params[:id])

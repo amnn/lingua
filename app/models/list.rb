@@ -23,8 +23,10 @@ class List < ActiveRecord::Base
 
   def self.filter params, curr_user
 
-    base_query  = []
-    base_params = [] 
+    base_query    = []
+    base_params   = [] 
+    filter_query  = []
+    filter_params = []
 
     if params[     :my_lists ]
 
@@ -39,11 +41,6 @@ class List < ActiveRecord::Base
       base_params <<         true
 
     end
-
-    lists_base    = List.where( base_query.join( " OR " ), *base_params )
-
-    filter_query  = []
-    filter_params = []
 
     if params[ :search ]
 
@@ -62,7 +59,8 @@ class List < ActiveRecord::Base
 
     end
 
-    lists_base.where( filter_query.join( " AND " ), *filter_params )
+    lists_base = List.where(  base_query.join(   " OR " ),   *base_params )
+    lists_base.where(        filter_query.join( " AND " ), *filter_params )
   end
 
 end
