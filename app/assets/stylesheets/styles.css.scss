@@ -2,7 +2,12 @@
 @import url(http://fonts.googleapis.com/css?family=Cinzel+Decorative);
 @import "bootstrap";
 
-body   { padding-top:                               40px; }
+body   { 
+
+    background-color: #eee;
+    padding-top:      40px;
+
+}
 
 h2, h1 { font-family:           Garamond, Georgia, serif; }
 
@@ -34,12 +39,11 @@ input[ type = "button" ].btn-block, {
 
 }
 
-.login-box {
+.login-box, .list-index, .list-view, .list-form {
 
     background-color:    #fff;
     color:               #000;
 
-    width:              320px;
     margin:         10px auto;
     padding:             20px;
 
@@ -52,6 +56,8 @@ input[ type = "button" ].btn-block, {
     box-shadow:            0 1px 2px rgba(0,0,0,.15);
 
 }
+
+.login-box { width:                 320px; }
 
 .login-box h2, .login-box h3 {
 
