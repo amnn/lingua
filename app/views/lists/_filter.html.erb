@@ -31,13 +31,13 @@
 
       <li><%= label_tag :my_lists, :class => 'checkbox' do %>
 
-        <%= check_box_tag :my_lists, '1', true %> My Lists
+        <%= check_box_tag :my_lists, '1', params[:my_lists] %> My Lists
 
       <% end %></li>
 
       <li><%= label_tag :public_lists, :class => 'checkbox' do %>
 
-        <%= check_box_tag :public_lists %> Public Lists
+        <%= check_box_tag :public_lists, '1', params[:public_lists] %> Public Lists
 
       <% end %></li>
       <li class='divider'></li>
@@ -47,7 +47,7 @@
         <% id = :"lang[#{lang.id}]" %>
         <li><%= label_tag id, :class => 'checkbox' do %>
 
-          <%= check_box_tag id, '1', true %> <%= lang.name %>
+          <%= check_box_tag id, '1', params[:lang][ lang.id.to_s ] %> <%= lang.name %>
 
         <% end %></li>
 

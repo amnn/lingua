@@ -11,7 +11,24 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all
+
+    # Set Filter defaults
+
+    if params[     :my_lists ].nil?   &&
+       params[ :public_lists ].nil? then
+
+      params[      :my_lists ] =  true
+      params[  :public_lists ] = false
+
+    end
+
+    if params[ :lang ].nil?
+
+      params[  :lang ] = Hash[ Language.all.map { |l| [l.id.to_s, "1"] } ]
+
+    end
+
+    @lists = List.filter( params, current_user )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -102,33 +119,28 @@ class ListsController < ApplicationController
 
     new_items = []
 
-    nested.each do |i, r|
+    if nested then
+      nested.each do |i, r|
 
-      if !r.key?( "id" )
+        if !r.key?( "id" )
 
-        new_items << ListItem.new( { "list" => @list }.merge( r ) ) if !item_blank?( r )
+          new_items << ListItem.new( { "list" => @list }.merge( r ) ) if !item_blank?( r )
 
-        nested.delete( i )
+          nested.delete( i )
 
-      else
+        else
 
-        r[ "_destroy" ] = "true" if item_blank?( r )
+          r[ "_destroy" ] = "true" if item_blank?( r )
+
+        end
 
       end
-
-    end
-
-    nested.delete_if do |i, r|
-
-      new_items << ListItem.new( { "list" => @list }.merge( r ) ) if !r.key?( "id" ) && 
-
-      !r.key?( "id" )
     end
 
     respond_to do |format|
-      if @list.update_attributes(               params[ :list ] )   && 
-         @list.update_attributes( list_items_attributes: nested )   &&
-         new_items.map(                             &:save ).all? then
+      if @list.update_attributes(                       params[ :list ] )   && 
+         @list.update_attributes( list_items_attributes: (nested || {}) )   &&
+         new_items.map(                                     &:save ).all? then
 
         format.html { redirect_to @list, notice: 'List was successfully updated.' }
         format.json { head :no_content }
