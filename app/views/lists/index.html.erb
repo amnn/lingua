@@ -4,6 +4,7 @@
 
 <thead>
   <tr>
+    <th></th>
     <th style="width:30%;">Name</th>
     <th style="width:15%;">Created By</th>
     <th style="width:20%;">Languages</th>
@@ -17,6 +18,7 @@
 
 <% @lists.each do |list| %>
   <tr>
+    <td><i class='icon-eye-<%= list.public ? 'open' : 'close' %>'></i></td>
     <td><%= link_to list.name, list_path(list) %></td>
     <td><%= list.user.first_name %></td>
     <td><%= list.lang1.name + " - " + list.lang2.name %></td>

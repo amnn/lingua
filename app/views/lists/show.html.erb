@@ -2,6 +2,7 @@
     <h2><%= @list.name %>     
         <span class='pull-right'>
             <%= render 'rating', list: @list %>
+            <i class='icon-eye-<%= @list.public ? 'open' : 'close' %>'></i>
         </span>
     </h2>
 
