@@ -23,6 +23,7 @@ group :assets do
 end
 
 gem                'devise'
+gem              'kaminari'
 
 gem          'jquery-rails'
 

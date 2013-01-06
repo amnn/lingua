@@ -80,7 +80,7 @@ class ListItem < ActiveRecord::Base
     #print "process_word #{word}, #{lang_id}"
     ListItem.uncached do
 
-      word_model = Word.where( :word => word.downcase, :language_id => lang_id ).first
+      word_model = Word.where( :word => word.downcase.strip, :language_id => lang_id ).first
 
       if !word_model.nil?
 
@@ -89,7 +89,7 @@ class ListItem < ActiveRecord::Base
 
       else
 
-        word_model = Word.create( :word => word.downcase, :language_id => lang_id )
+        word_model = Word.create( :word => word.downcase.strip, :language_id => lang_id )
 
       end
 

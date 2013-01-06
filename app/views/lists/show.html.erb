@@ -1,5 +1,10 @@
 <div class='list-box list-view'>
-    <h2><%= @list.name %></h2>
+    <h2><%= @list.name %>     
+        <span class='pull-right'>
+            <%= render 'rating', list: @list %>
+        </span>
+    </h2>
+
 
     <table class='table table-striped definition-table'>
 

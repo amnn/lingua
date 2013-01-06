@@ -18,7 +18,6 @@ class ListsController < ApplicationController
        params[ :public_lists ].nil? then
 
       params[      :my_lists ] =  true
-      params[  :public_lists ] = false
 
     end
 
@@ -28,7 +27,7 @@ class ListsController < ApplicationController
 
     end
 
-    @lists = List.filter( params, current_user )
+    @lists = List.filter( params, current_user ).page( params[:page] || 1 )
 
     respond_to do |format|
       format.html # index.html.erb

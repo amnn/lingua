@@ -1,5 +1,7 @@
 class List < ActiveRecord::Base  
   
+  paginates_per 20
+
   attr_accessible                  :user
   attr_accessible       :name,   :public
   attr_accessible      :lang1,    :lang2
@@ -20,6 +22,14 @@ class List < ActiveRecord::Base
 
   accepts_nested_attributes_for                 :list_items, 
                                 allow_destroy:         true
+
+  def rating
+
+    count = list_ratings.size
+
+    count == 0 ? 0 : ( list_ratings.map( &:rating ).inject( 0, &:+ ) / count ).round
+
+  end
 
   def self.filter params, curr_user
 
