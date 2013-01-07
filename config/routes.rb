@@ -19,6 +19,7 @@ Lingua::Application.routes.draw do
   resources :lists
 
   match '/lists/:id/copy' => 'lists#copy', via: :post, as: :copy_list
+  match '/rate/:id'       => 'lists#rate', via:  :put, as: :rate_list
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

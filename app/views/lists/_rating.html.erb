@@ -1,8 +1,8 @@
 <%=
 
 rating  =                       list.rating
-star    =       '<i class="icon-star"></i>'
-no_star = '<i class="icon-star-empty"></i>'
+star    =       '<i class="rating icon-star" data-on="1"></i>'
+no_star = '<i class="rating icon-star-empty" data-on="0"></i>'
 
 ( [ star ] * rating + [ no_star ] * ( 5 - rating ) ).join.html_safe
 

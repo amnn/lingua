@@ -68,6 +68,39 @@ class ListsController < ApplicationController
     end
   end
 
+  # PUT /lists/1/rate?score=5
+  def rate
+
+    list   = List.find( params[ :id ] )
+    score  = params[         :score ]
+
+    if !score.nil?
+      puts "UPDATING SCORE"
+      rating        = ListRating.where( list_id:         list.id, 
+                                        user_id: current_user.id ).first_or_create
+
+      rating.rating = score
+
+    end
+
+
+    respond_to do |format|
+
+      if score.nil? || !rating.save
+
+        format.html { redirect_to request.referer, alert:  "Invalid rating provided for list." }
+        format.json { head            :no_content, status:                         :unassigned }
+
+      else
+
+        format.html { redirect_to request.referer, notice: "Rated #{ list.name } #{ score } out of 5!" }
+        format.json { head            :no_content, status:                                         :ok }
+
+      end
+
+    end
+  end
+
   # POST /lists/1/copy
   def copy
 
