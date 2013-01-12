@@ -4,12 +4,12 @@
 
 <thead>
   <tr>
-    <th></th>
-    <th style="width:30%;">Name</th>
-    <th style="width:15%;">Created By</th>
-    <th style="width:20%;">Languages</th>
-    <th style="width:12%;">Rating</th>
-    <th style="width:13%;">Last Updated</th>
+    <th><%= sort_column 'public',      "<i class='icon-eye-close'></i>" %></th>
+    <th style="width:25%;"><%= sort_column                       'name' %></th>
+    <th style="width:13%;"><%= sort_column                 'created_by' %></th>
+    <th style="width:20%;"><%= sort_column                  'languages' %></th>
+    <th style="width:12%;"><%= sort_column                     'rating' %></th>
+    <th style="width:15%;"><%= sort_column 'updated_at', 'Last Updated' %></th>
     <th class='pull-right'>Actions</th>
   </tr>
 </thead>
@@ -25,7 +25,7 @@
     <td><%= render 'rating', list: list %></td>
     <td><%= list.updated_at.strftime( '%d/%m/%Y') %></td>
 
-    <td><%= render 'tools', :list => list %></td>
+    <td><%= render 'tools', list: list %></td>
   </tr>
 <% end %>
 

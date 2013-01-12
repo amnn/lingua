@@ -27,6 +27,13 @@ class ListsController < ApplicationController
 
     end
 
+    if params[ :sortBy ].nil?
+
+      params[ :sortBy ] = 'name'
+      params[    :dir ] =  'asc'
+
+    end
+
     @lists = List.filter( params, current_user ).page( params[:page] || 1 )
 
     respond_to do |format|

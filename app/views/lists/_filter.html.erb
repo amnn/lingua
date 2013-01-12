@@ -1,6 +1,10 @@
 <% langs = Language.all %>
 
 <%= form_tag lists_path, :method => 'get', :class => 'form-search' do %>
+
+<%= hidden_field_tag :sortBy, params[:sortBy] %>
+<%= hidden_field_tag    :dir, params[   :dir] %>
+
 <div class='btn-toolbar'>
 
 <div class='input-append'>

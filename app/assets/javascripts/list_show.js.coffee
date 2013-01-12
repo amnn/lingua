@@ -19,21 +19,37 @@ $ ->
 
             $.ajax {
     
-                type     :                                      'PUT',
-                url      :                            "/rate/#{ id }",
+                type     :                                     'PUT',
+                url      :                           "/rate/#{ id }",
 
-                data     : { 
-
-                    score   : score 
-
-                },
+                data     :                         { score : score },
 
                 dataType :                                    "json",
                 success  : ( data, stat ) -> location.reload( true )
     
             }
 
-            console.log( "Sent request #{ id }" )
+    )
+
+    $( '.sort-column' ).click( (e) ->
+
+        new_col  = $(this).data( 'column' )
+        curr_col = $('#sortBy').val(      )
+
+        dir      = if new_col == curr_col then {
+
+            asc  : 'desc', 
+            desc :  'asc'
+
+        }[ $('#dir').val() ] else 'asc'
+
+
+        console.log( new_col, curr_col, dir )
+
+        $( '#sortBy' ).val( new_col )
+        $(    '#dir' ).val(     dir )
+
+        $( '#filter_apply' ).click( )
 
     )
 
