@@ -47,8 +47,6 @@ checkWord = () ->
         dataType :                             "json",
         success  : ( data, stat ) ->
 
-            console.log( data )
-
             if hex_md5( word ) == testData.words[ testQ ].answer
 
                 testQ += 1

@@ -30,7 +30,21 @@
 
 
     </table>
-    <% # Should Display Edit and Destroy *or* Copy %>
+
+    <%= link_to(         "/test/from/#{@list.id}", 
+                 class: 'btn btn-block btn-large' ) do %>
+
+        Test <%= @list.lang1.name %> &rarr; <%= @list.lang2.name %>
+
+    <% end %>
+
+    <%= link_to(           "/test/to/#{@list.id}",
+                 class: 'btn btn-block btn-large' ) do %>
+
+        Test <%= @list.lang2.name %> &rarr; <%= @list.lang1.name %>
+
+    <% end %>
+
     <%= link_to(              'Edit', edit_list_path( @list ), 
                  class: 'btn btn-block btn-large btn-primary' ) if @list.user == current_user %>
 
