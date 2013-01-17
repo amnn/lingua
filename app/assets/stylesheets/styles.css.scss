@@ -39,7 +39,7 @@ input[ type = "button" ].btn-block, {
 
 }
 
-.login-box, .list-index, .list-view, .list-form {
+.login-box, .list-index, .list-view, .list-form, .test-view {
 
     background-color:    #fff;
     color:               #000;
@@ -143,6 +143,38 @@ input[ type = "button" ].btn-block, {
 }
 
 .list_form table td:nth-child(3) {
+
     max-width:        1%;
     padding-bottom: 10px;
+
+}
+
+#test-details {
+    font-size:    24pt;
+    color:        #ddd;
+}
+
+#test-progress {
+
+    float:       right;
+    font-size:    24pt;
+    color:        #ddd;
+}
+
+
+.test-question {
+
+    text-align: center;
+    font-size:    56pt;
+
+}
+
+.test-question h1 { font-size:56pt; }
+
+#test_word {
+
+    text-align: center;
+    font-size:    24pt;
+    line-height:  24pt;
+    height:       60px;
 }

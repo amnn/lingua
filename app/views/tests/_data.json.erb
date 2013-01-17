@@ -1,0 +1,27 @@
+{
+    'id'  : <%=                            list.id %>,
+    'ans' : <%= params[:dir] == 'from' ? '2' : '1' %>,
+
+    'words'     : [
+    <% i = 0 -%>
+    <% list.list_items.shuffle.each do |item| -%>
+    <% w1 = item.word1_str.downcase -%>
+    <% w2 = item.word2_str.downcase -%>
+    <% if i != 0 -%>,<% end -%>
+    <% if params[ :dir ] == 'from' -%>
+        {
+            'item_id'  : <%=                       item.id %>,
+            'question' : '<%=                        w1   %>',
+            'answer'   : '<%= Digest::MD5.hexdigest( w2 ) %>'
+        }
+    <% else -%>
+        {
+            'item_id'  : <%=                       item.id %>,
+            'question' : '<%=                        w2   %>',
+            'answer'   : '<%= Digest::MD5.hexdigest( w1 ) %>'
+        }
+    <% end -%>
+    <% i = i + 1 -%>
+    <% end -%>
+    ]
+}

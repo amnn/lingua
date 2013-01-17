@@ -1,0 +1,32 @@
+<%= content_for :js do %>
+
+    <script type='text/javascript'>
+
+        window.correction = false
+        window.testQ      = 0
+        window.testData   = <%= render partial: 'data.json.erb', locals: { list: @list } %>;
+
+    </script>
+
+<% end %>
+
+<div class='test-view span8 offset2'>
+
+    <div class='test-question span12' style='margin:0;margin-bottom:20px;'>
+        <h1 id='test_question'></h1>
+    </div>
+    <div class='progress progress-striped active span12' style='margin:0;margin-bottom:10px;' >
+        <div class='bar' style='width: 0%'></div>
+    </div>
+    <div class='span12 control-group' style='margin:0;margin-bottom:25px;'>
+        <div class='controls'>
+            <%= text_field_tag :test_word, '', placeholder: 'Answer', class: 'span12 search-query' %>
+        </div>
+    </div>
+
+    <div class='span12' id='test-details'>
+        <%= @list.name %>
+        <div id='test-progress'>0%</div>
+    </div>
+
+</div>
