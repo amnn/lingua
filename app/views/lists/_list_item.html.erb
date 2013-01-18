@@ -1,0 +1,26 @@
+<% 
+  uw1 = UserWord.where( user_id: current_user.id,
+                        lang_id:   list.lang2_id,
+                        word_id:   item.word1_id ).first
+
+  uw2 = UserWord.where( user_id: current_user.id,
+                        lang_id:   list.lang1_id,
+                        word_id:   item.word2_id ).first
+
+  p1  = uw1.nil? ? 0 : uw1.progress * 20
+  p2  = uw2.nil? ? 0 : uw2.progress * 20
+
+  w1  = !uw1.nil? && uw1.wrong
+  w2  = !uw2.nil? && uw2.wrong
+
+-%>
+<tr <%= "class=error" if w1 || w2 %>>
+  <td class='progress progress-striped <%= 'progress-danger' if w1 %>'>
+      <div class='bar' style='width: <%= p1 %>%' ></div>
+  </td>
+  <td><%= item.word1_str %></td>
+  <td><%= item.word2_str %></td>
+  <td class='progress progress-striped <%= 'progress-danger' if w2 %>'>
+      <div class='bar' style='width: <%= p2 %>%' ></div>
+  </td>
+</tr>

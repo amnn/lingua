@@ -30,9 +30,12 @@ class TestsController < ApplicationController
 
     }
 
+    puts " ANSFIELD : :: "
+    p params[ :ans ]
+
     parCorr   =                       params[ :correct ] == "true"
     item      =               ListItem.find( params[ :item_id ] )
-    to        =                               params[ :ans ] == 1
+    to        =                            params[ :ans ] == "1"
     @correct  = ( to ? item.word1_str : item.word2_str ).downcase
     list      =                                         item.list
 
@@ -64,8 +67,10 @@ class TestsController < ApplicationController
 
       if user_word.correct >= milestones[ nextMS ] then
 
-        user_word.progress += 1 
-        current_user.stars += 1
+        user_word.progress     +=        1 
+        current_user.stars     +=        1
+
+        user_word.last_updated  = Time.now
 
       end
 

@@ -11,23 +11,20 @@
         <thead>
 
             <tr>
-                <th><%= @list.lang1.name %></th>
-                <th><%= @list.lang2.name %></th>
+                <th style='width: 25%;'></th>
+                <th style='width: 25%;'><%= @list.lang1.name %></th>
+                <th style='width: 25%;'><%= @list.lang2.name %></th>
+                <th style='width: 25%;'></th>
             </tr>
 
         </thead>
 
         <tbody>
-
-            <% @list.list_items.each do |item| %>
-            <tr>
-                <td><%= item.word1_str %></td>
-                <td><%= item.word2_str %></td>
-            </tr>
-            <% end %>
-
+            <% @list.list_items.each do |item| -%>
+                <%= render partial:                'list_item', 
+                           locals:  { list: @list, item: item } -%>
+            <% end -%>
         </tbody>
-
 
     </table>
 

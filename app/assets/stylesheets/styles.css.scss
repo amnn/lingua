@@ -39,7 +39,12 @@ input[ type = "button" ].btn-block, {
 
 }
 
-.login-box, .list-index, .list-view, .list-form, .test-view {
+.login-box, 
+.list-index, 
+.list-view, 
+.list-form, 
+.test-view,
+.leaderboard-view {
 
     background-color:    #fff;
     color:               #000;
@@ -125,8 +130,8 @@ input[ type = "button" ].btn-block, {
 }
 
 .list_form  table td:nth-child(1),
-.definition-table td:nth-child(1),
-.definition-table th:nth-child(1) {
+.definition-table td:nth-child(2),
+.definition-table th:nth-child(2) {
 
     padding-right:  10px;
     text-align:    right;
@@ -134,8 +139,8 @@ input[ type = "button" ].btn-block, {
 }
 
 .list_form  table td:nth-child(2),
-.definition-table td:nth-child(2),
-.definition-table th:nth-child(2) {
+.definition-table td:nth-child(3),
+.definition-table th:nth-child(3) {
 
     padding-left:   10px;
     text-align:     left;
@@ -146,6 +151,13 @@ input[ type = "button" ].btn-block, {
 
     max-width:        1%;
     padding-bottom: 10px;
+
+}
+
+.leaderboard td:nth-child(3),
+.leaderboard th:nth-child(3) {
+
+    text-align: right;
 
 }
 

@@ -20,7 +20,7 @@
   <tr>
     <td><i class='icon-eye-<%= list.public ? 'open' : 'close' %>'></i></td>
     <td><%= link_to list.name, list_path(list) %></td>
-    <td><%= list.user.first_name %></td>
+    <td><%= list.user.first_name.capitalize %></td>
     <td><%= list.lang1.name + " - " + list.lang2.name %></td>
     <td><%= render 'rating', list: list %></td>
     <td><%= list.updated_at.strftime( '%d/%m/%Y') %></td>
