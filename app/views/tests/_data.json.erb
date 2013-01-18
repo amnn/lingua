@@ -7,20 +7,21 @@
     <% list.list_items.shuffle.each do |item| -%>
     <% w1 = item.word1_str.downcase -%>
     <% w2 = item.word2_str.downcase -%>
+    <% uw = UserWord.where( lang_id: params[:dir] == 'from' ? list.lang1_id : list.lang2_id,
+                            user_id:                                        current_user.id,
+                            word_id: params[:dir] == 'from' ? item.word2_id : item.word1_id ).first -%>
     <% if i != 0 -%>,<% end -%>
+        {
+            'item_id'  : <%=                         item.id %>,
+            'progress' : <%= !uw.nil? ? uw.progress * 20 : 0 %>,
     <% if params[ :dir ] == 'from' -%>
-        {
-            'item_id'  : <%=                       item.id %>,
-            'question' : '<%=                        w1   %>',
-            'answer'   : '<%= Digest::MD5.hexdigest( w2 ) %>'
-        }
+            'question' : '<%=                          w1   %>',
+            'answer'   : '<%=   Digest::MD5.hexdigest( w2 ) %>'
     <% else -%>
-        {
-            'item_id'  : <%=                       item.id %>,
-            'question' : '<%=                        w2   %>',
-            'answer'   : '<%= Digest::MD5.hexdigest( w1 ) %>'
-        }
+            'question' : '<%=                          w2   %>',
+            'answer'   : '<%=   Digest::MD5.hexdigest( w1 ) %>'
     <% end -%>
+        }
     <% i = i + 1 -%>
     <% end -%>
     ]

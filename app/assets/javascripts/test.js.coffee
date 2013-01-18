@@ -12,10 +12,12 @@ $ ->
 nextWord = () ->
     if !testData then return
 
-    progress = $( '#test-progress' )
-    question = $( '#test_question' )
-    word     = $(     '#test_word' )
+    progBar  = $( '#progress-bar .bar' )
+    progress = $(     '#test-progress' )
+    question = $(     '#test_question' )
+    word     = $(         '#test_word' )
 
+    progBar.css(          'width', testData.words[ testQ ].progress + '%')
     progress.html( Math.ceil( 100 * testQ / testData.words.length ) + '%')
     question.html(                      testData.words[ testQ ].question )
     word.closest( '.control-group' ).removeClass(                'error' )
@@ -28,12 +30,15 @@ checkWord = () ->
         window.correction = false
 
         testQ += 1
-        nextWord()
+        if testQ < testData.words.length
+            nextWord()
+        else
+            window.location = '/lists/' + testData.id
         return
 
-    ansField = $(            '#test_word' )
-    word     = ansField.val().toLowerCase()
-
+    ansField  =                                 $( '#test_word' )
+    word      =                      ansField.val().toLowerCase()
+    isCorrect = hex_md5( word ) == testData.words[ testQ ].answer
 
     $.ajax {
         type     :                              'PUT',
@@ -41,13 +46,14 @@ checkWord = () ->
 
         data     : { 
             item_id : testData.words[ testQ ].item_id, 
+            correct :                       isCorrect,
             ans     :                    testData.ans
         },
 
         dataType :                             "json",
         success  : ( data, stat ) ->
 
-            if hex_md5( word ) == testData.words[ testQ ].answer
+            if isCorrect
 
                 testQ += 1
                 if testQ < testData.words.length
