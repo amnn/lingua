@@ -12,12 +12,14 @@
                         <i class='icon-list'></i> Lists
                     <% end %>
                 </li>
+
+                <% if user_signed_in? %>
                 <li>
                     <%= link_to leaderboard_path do %>
                         <i class='icon-certificate'></i> Leaderboard
                     <% end %>
                 </li>
-
+                <% end %>
 
             </ul>
 
