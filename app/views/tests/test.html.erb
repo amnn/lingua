@@ -6,6 +6,13 @@
         window.testQ      = 0
         window.testData   = <%= render partial: 'data.json.erb', locals: { list: @list } %>;
 
+        $( function() { 
+
+                $( '#correct-sound' )[0].load();
+                $(   '#wrong-sound' )[0].load();
+
+        } );
+
     </script>
 
 <% end %>
@@ -30,3 +37,6 @@
     </div>
 
 </div>
+
+<audio src='/audios/correct.wav' id='correct-sound' />
+<audio src='/audios/wrong.wav'   id='wrong-sound'   />

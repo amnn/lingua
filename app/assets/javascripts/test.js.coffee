@@ -3,14 +3,14 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ -> 
-
     $('#test_word').keyup( (e) -> checkWord() if e.keyCode == 13 )
 
     nextWord()
     
 
 nextWord = () ->
-    if !testData then return
+    
+    if !testData? then return
 
     progBar  = $( '#progress-bar .bar' )
     progress = $(     '#test-progress' )
@@ -54,14 +54,24 @@ checkWord = () ->
         success  : ( data, stat ) ->
 
             if isCorrect
+                correctSound = $( '#correct-sound' )[0];
 
-                testQ += 1
-                if testQ < testData.words.length
-                    nextWord()
-                else
-                    window.location = '/lists/' + testData.id
+                correctSound.addEventListener( 'ended', () ->
+                    
+                    testQ += 1
+                    if testQ < testData.words.length
+                        nextWord()
+                    else
+                        window.location = '/lists/' + testData.id
+
+                    this.removeEventListener( 'ended', arguments.callee, false )
+
+                , false )
+
+                correctSound.play()
 
             else
+                $( '#wrong-sound' )[0].play()
                 window.correction = true
                 ansField.closest( '.control-group' ).addClass( 'error' )
                 ansField.val( data.correct )

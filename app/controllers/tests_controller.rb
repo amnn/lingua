@@ -30,9 +30,6 @@ class TestsController < ApplicationController
 
     }
 
-    puts " ANSFIELD : :: "
-    p params[ :ans ]
-
     parCorr   =                       params[ :correct ] == "true"
     item      =               ListItem.find( params[ :item_id ] )
     to        =                            params[ :ans ] == "1"
