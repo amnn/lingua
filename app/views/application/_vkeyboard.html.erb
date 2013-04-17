@@ -1,0 +1,8 @@
+<% characters = "äöüßÄÖÜéèêûôàâáçîï" -%>
+
+<div class='btn-group vkeyboard'>
+<% characters.each_char do |char| -%>
+    <button class='btn'><%= char %></button>
+
+<% end -%>
+</div>
