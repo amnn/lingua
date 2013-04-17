@@ -5,6 +5,67 @@
  * http://www.opensource.org/licenses/mit-license.php
  *
  */
-﻿(function(k,e,i,j){k.fn.caret=function(b,l){var a,c,f=this[0],d=k.browser.msie;if(typeof b==="object"&&typeof b.start==="number"&&typeof b.end==="number"){a=b.start;c=b.end}else if(typeof b==="number"&&typeof l==="number"){a=b;c=l}else if(typeof b==="string")if((a=f.value.indexOf(b))>-1)c=a+b[e];else a=null;else if(Object.prototype.toString.call(b)==="[object RegExp]"){b=b.exec(f.value);if(b!=null){a=b.index;c=a+b[0][e]}}if(typeof a!="undefined"){if(d){d=this[0].createTextRange();d.collapse(true);
-d.moveStart("character",a);d.moveEnd("character",c-a);d.select()}else{this[0].selectionStart=a;this[0].selectionEnd=c}this[0].focus();return this}else{if(d){c=document.selection;if(this[0].tagName.toLowerCase()!="textarea"){d=this.val();a=c[i]()[j]();a.moveEnd("character",d[e]);var g=a.text==""?d[e]:d.lastIndexOf(a.text);a=c[i]()[j]();a.moveStart("character",-d[e]);var h=a.text[e]}else{a=c[i]();c=a[j]();c.moveToElementText(this[0]);c.setEndPoint("EndToEnd",a);g=c.text[e]-a.text[e];h=g+a.text[e]}}else{g=
-f.selectionStart;h=f.selectionEnd}a=f.value.substring(g,h);return{start:g,end:h,text:a,replace:function(m){return f.value.substring(0,g)+m+f.value.substring(h,f.value[e])}}}}})(jQuery,"length","createRange","duplicate");
+﻿(function($,len,createRange,duplicate){
+	$.fn.caret=function(options,opt2){
+		var start,end,t=this[0],browser=$.browser.msie;
+		if(typeof options==="object" && typeof options.start==="number" && typeof options.end==="number") {
+			start=options.start;
+			end=options.end;
+		} else if(typeof options==="number" && typeof opt2==="number"){
+			start=options;
+			end=opt2;
+		} else if(typeof options==="string"){
+			if((start=t.value.indexOf(options))>-1) end=start+options[len];
+			else start=null;
+		} else if(Object.prototype.toString.call(options)==="[object RegExp]"){
+			var re=options.exec(t.value);
+			if(re != null) {
+				start=re.index;
+				end=start+re[0][len];
+			}
+		}
+		if(typeof start!="undefined"){
+			if(browser){
+				var selRange = this[0].createTextRange();
+				selRange.collapse(true);
+				selRange.moveStart('character', start);
+				selRange.moveEnd('character', end-start);
+				selRange.select();
+			} else {
+				this[0].selectionStart=start;
+				this[0].selectionEnd=end;
+			}
+			this[0].focus();
+			return this
+		} else {
+			// Modification as suggested by Андрей Юткин
+           if(browser){
+				var selection=document.selection;
+                if (this[0].tagName.toLowerCase() != "textarea") {
+                    var val = this.val(),
+                    range = selection[createRange]()[duplicate]();
+                    range.moveEnd("character", val[len]);
+                    var s = (range.text == "" ? val[len]:val.lastIndexOf(range.text));
+                    range = selection[createRange]()[duplicate]();
+                    range.moveStart("character", -val[len]);
+                    var e = range.text[len];
+                } else {
+                    var range = selection[createRange](),
+                    stored_range = range[duplicate]();
+                    stored_range.moveToElementText(this[0]);
+                    stored_range.setEndPoint('EndToEnd', range);
+                    var s = stored_range.text[len] - range.text[len],
+                    e = s + range.text[len]
+                }
+			// End of Modification
+            } else {
+				var s=t.selectionStart,
+					e=t.selectionEnd;
+			}
+			var te=t.value.substring(s,e);
+			return {start:s,end:e,text:te,replace:function(st){
+				return t.value.substring(0,s)+st+t.value.substring(e,t.value[len])
+			}}
+		}
+	}
+})(jQuery,"length","createRange","duplicate");
