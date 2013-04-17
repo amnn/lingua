@@ -1,7 +1,16 @@
 <tr data-index='<%= index %>'>
   
-  <td><%= f.text_field :word1_str, placeholder: 'Word' %></td>
-  <td><%= f.text_field :word2_str, placeholder: 'Word' %></td>
+  <td>
+    <%= f.text_field                      :word1_str, 
+                     class:       'vkeyboard-target',
+                     placeholder:             'Word' %>
+  </td>
+  <td>
+    <%= f.text_field                      :word2_str, 
+                     class:       'vkeyboard-target',
+                     placeholder:             'Word' %>
+  </td>
+
   <td class='close-button-cell'>
     <%= f.hidden_field :_destroy %>
     <button class="close" type="button" >&times;</button>

@@ -12,7 +12,6 @@
     </div>
 <% end %>
 
-
 <% opts = Language.all.collect{ |lang| [ lang.name, lang.id ] } %>
 <%= form_for( @list, html: { class: 'list_form' } ) do |f| %>
     
@@ -20,8 +19,9 @@
 
       <tr>
         <td>
-          <%= f.text_field                    :name, 
-                           placeholder: 'List Name' %>
+          <%= f.text_field                           :name,
+                           class:       'vkeyboard-target', 
+                           placeholder:        'List Name' %>
         </td>
         <td>
           <%= f.label :public, class: 'checkbox' do %>

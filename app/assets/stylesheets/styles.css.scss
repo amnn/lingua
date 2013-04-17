@@ -39,6 +39,15 @@ input[ type = "button" ].btn-block, {
 
 }
 
+.vkeyboard {
+    text-align: center;
+}
+
+.vkeyboard .btn {
+    display: inline-block;
+    float:           none;
+}
+
 .login-box, 
 .list-index, 
 .list-view, 

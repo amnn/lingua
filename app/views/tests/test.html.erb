@@ -16,6 +16,7 @@
     </script>
 
 <% end %>
+<%= render 'vkeyboard' %>
 
 <div class='test-view span8 offset2'>
 
@@ -27,7 +28,7 @@
     </div>
     <div class='span12 control-group' style='margin:0;margin-bottom:25px;'>
         <div class='controls'>
-            <%= text_field_tag :test_word, '', placeholder: 'Answer', class: 'span12 search-query' %>
+            <%= text_field_tag :test_word, '', placeholder: 'Answer', class: 'span12 search-query vkeyboard-target' %>
         </div>
     </div>
 
