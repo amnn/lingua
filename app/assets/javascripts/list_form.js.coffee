@@ -9,7 +9,7 @@ $ ->
     $( '#add_definition' ).click( addFields )
 
 inputField = (field, i, type = 'text', ph = null) -> 
-    """<input id="list_list_items_attributes_#{i}_#{field}" type="#{type}" #{ if ph then "placeholder=\"#{ph}\" " else "" }name="list[list_items_attributes][#{i}][#{field}]" ></input>"""
+    """<input #{"class='vkeyboard-target'" if type == 'text' } id="list_list_items_attributes_#{i}_#{field}" type="#{type}" #{ if ph then "placeholder=\"#{ph}\" " else "" }name="list[list_items_attributes][#{i}][#{field}]" ></input>"""
 
 itemForm  = (i) ->
     """
