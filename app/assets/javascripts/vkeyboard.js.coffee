@@ -1,5 +1,6 @@
 $ ->
-    $( '.vkeyboard-target' ).blur(  (e) -> window.vKBTarget = $(this) )
+    $( 'body' ).on( 'blur', 'input.vkeyboard-target', 
+                    (e) -> window.vKBTarget = $(this) )
 
     $( '.vkeyboard .btn' ).click( (e) ->
 
